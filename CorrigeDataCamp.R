@@ -16,3 +16,23 @@ files_justificante <- list.files(
   recursive = TRUE,
   full.names = TRUE
 )
+
+
+apellidos <- c()
+puntos <- c()
+nomFile <- c()
+contenido <- c()
+
+for (file in files_puntos) {
+  
+  partes <- strsplit(file, "/")[[1]]
+  alumno <- partes[length(partes) - 1]
+  
+  lineas <- readLines(file, warn = FALSE)
+  puntuacion <- as.numeric(lineas[1])
+  
+  apellidos <- c(apellidos, alumno)
+  puntos <- c(puntos, puntuacion)
+  nomFile <- c(nomFile, basename(file))
+  contenido <- c(contenido, lineas[1])
+}
