@@ -36,3 +36,17 @@ for (file in files_puntos) {
   nomFile <- c(nomFile, basename(file))
   contenido <- c(contenido, lineas[1])
 }
+
+evalua_df <- data.frame(
+  Apellidos = apellidos,
+  puntos = puntos,
+  NomFile = nomFile,
+  Puntos = contenido,
+  stringsAsFactors = FALSE
+)
+
+evalua_df <- evalua_df[order(evalua_df$Apellidos), ]
+
+library(writexl)
+
+write_xlsx(evalua_df, "NotasRIntermedio.xlsx")
